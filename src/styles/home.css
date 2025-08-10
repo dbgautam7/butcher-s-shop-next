@@ -1,0 +1,10 @@
+.container {
+  /* padding: 1rem; */
+}
+
+.sectionTitle {
+  text-align: start;
+  font-size: 2rem;
+  color: #b71c1c;
+  margin-bottom: 1rem;
+}
