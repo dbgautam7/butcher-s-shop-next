@@ -1,11 +1,15 @@
-import "../styles/home.css";
-import Card from "./components/Card";
+import AboutUs from "./components/About";
+import ContactUs from "./components/Contact";
+import Product from "./components/Product";
+import Services from "./components/Services";
 
 export default function Home() {
   return (
     <section className="container">
-      <h2 className="sectionTitle">Our Products</h2>
-      <Card />
+      <Product />
+      <Services />
+      <AboutUs />
+      <ContactUs />
     </section>
   );
 }

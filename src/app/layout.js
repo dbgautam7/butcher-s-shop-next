@@ -23,7 +23,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        style={{ marginTop: "80px" }}
         className={`${geistSans.variable} ${geistMono.variable} ${styles.page}`}
       >
         <Header />

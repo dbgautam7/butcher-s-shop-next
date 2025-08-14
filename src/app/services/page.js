@@ -11,7 +11,7 @@ export default function Services() {
       </div>
       <section className={styles.container}>
         <h2 className={styles.sectionTitle}>What We Offer</h2>
-        <ul>
+        <ul style={{ listStyleType: "disc", paddingInlineStart: "1rem" }}>
           <li>Custom meat cutting and preparation</li>
           <li>Bulk orders for events and restaurants</li>
           <li>Home delivery service</li>

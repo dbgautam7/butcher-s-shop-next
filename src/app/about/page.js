@@ -18,7 +18,7 @@ export default function About() {
           the highest standards.
         </p>
         <h2 className={styles.sectionTitle}>Why Choose Us?</h2>
-        <ul>
+        <ul style={{ listStyleType: "disc", paddingInlineStart: "1rem" }}>
           <li>Locally sourced products</li>
           <li>Expert butchers with years of experience</li>
           <li>Friendly and knowledgeable staff</li>

@@ -1,4 +1,5 @@
 .page {
+  --primary-color: #92400e;
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
@@ -7,7 +8,7 @@
   --button-secondary-hover: #f2f2f2;
 
   min-height: 100vh;
-  background: linear-gradient(120deg, #fffbe6 0%, #ffe5e5 100%);
+  /* background: linear-gradient(120deg, #fffbe6 0%, #ffe5e5 100%); */
   display: flex;
   flex-direction: column;
 }
@@ -33,7 +34,6 @@
 }
 
 .main ol {
-  font-family: var(--font-geist-mono);
   padding-left: 0;
   margin: 0;
   font-size: 14px;
@@ -52,6 +52,12 @@
   padding: 2px 4px;
   border-radius: 4px;
   font-weight: 600;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
 }
 
 .ctas {
@@ -116,10 +122,6 @@ a.secondary {
     align-items: center;
   }
 
-  .main ol {
-    text-align: center;
-  }
-
   .ctas {
     flex-direction: column;
   }
@@ -141,45 +143,49 @@ a.secondary {
   }
 }
 
-.contactForm {
-  display: flex;
-  flex-direction: column;
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Mobile first: 1 column */
   gap: 1rem;
-  max-width: 500px;
-  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+
+/* Medium screens (tablets) - 2 columns */
+@media (min-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens (desktops) - 4 columns */
+@media (min-width: 1200px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.productCard {
   background: #fffbe6;
-  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(183, 28, 28, 0.06);
+  padding: 1.5rem;
+  text-align: center;
+  transition: box-shadow 0.2s;
+  width: 100%;
 }
 
-.input {
-  padding: 0.75rem;
-  border: 1px solid #b71c1c;
-  border-radius: 6px;
+.productCard:hover {
+  box-shadow: 0 6px 24px rgba(183, 28, 28, 0.12);
+}
+
+.productImage {
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.price {
   font-size: 1rem;
-}
-
-.textarea {
-  padding: 0.75rem;
-  border: 1px solid #b71c1c;
-  border-radius: 6px;
-  font-size: 1rem;
-  resize: vertical;
-}
-
-.button {
-  background: #b71c1c;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-size: 1.1rem;
+  color: #d84315;
   font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.button:hover {
-  background: #d84315;
+  margin-top: 0.5rem;
 }
