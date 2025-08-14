@@ -22,24 +22,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "npm"
 
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 6: Build the Next.js app
+      # Step 4: Lint the code
+      - name: Lint
+        run: npm run lint
+
+      # Step 5: Build the project
       - name: Build
         run: npm run build
 
-      # Example: Deploy to Vercel (replace with your deployment method)
+      # Step 6: Deploy to Vercel
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: .
+          vercel-args: "--prod"
