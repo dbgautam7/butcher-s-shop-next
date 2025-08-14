@@ -22,15 +22,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
 
       # Step 3: Install dependencies
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       # Step 6: Build the Next.js app
       - name: Build
-        run: pnpm run build
+        run: npm run build
 
       # Example: Deploy to Vercel (replace with your deployment method)
       - name: Deploy to Vercel
