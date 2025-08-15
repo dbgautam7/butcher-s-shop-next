@@ -1,9 +1,4 @@
-name: NextJS App Vercel Deployment
-
-env:
-  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+name: CI/CD Pipeline with Vercel for Next app
 
 on:
   push:
@@ -14,17 +9,36 @@ on:
       - main
 
 jobs:
-  Deploy-Production:
+  build-test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Install Vercel CLI
-        run: npm install -g vercel
-      - name: Pull Vercel Environment Variables
-        run: vercel pull --yes --environment=production --token=${{secrets.VERCEL_TOKEN}}
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Linting
+        run: npm run lint
 
       - name: Build Project
-        run: vercel build --prod --token=${{secrets.VERCEL_TOKEN}}
+        run: npm run build
 
-      - name: Deploy Project
-        run: vercel deploy --prebuilt --prod --token=${{secrets.VERCEL_TOKEN}}
+  deploy:
+    needs: build-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
