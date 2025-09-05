@@ -54,6 +54,9 @@
   font-weight: 600;
 }
 
+.container {
+}
+
 .sectionTitle {
   font-size: 1.5rem;
   font-weight: bold;
@@ -170,12 +173,16 @@ a.secondary {
   box-shadow: 0 2px 12px rgba(183, 28, 28, 0.06);
   padding: 1.5rem;
   text-align: center;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s cubic-bezier(0.4, 0.2, 0.2, 1);
   width: 100%;
+  will-change: transform;
 }
 
 .productCard:hover {
   box-shadow: 0 6px 24px rgba(183, 28, 28, 0.12);
+  transform: scale(1.03);
+  transition-duration: 0.4s;
+  z-index: 2;
 }
 
 .productImage {
